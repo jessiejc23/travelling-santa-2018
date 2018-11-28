@@ -118,11 +118,15 @@ def breedPopulation(matingpool, eliteSize):
     pool = random.sample(matingpool, len(matingpool))
 
     for i in range(0,eliteSize):
+        print(i)
         children.append(matingpool[i])
+        print(children)
     
     for i in range(0, length):
+        print(i)
         child = breed(pool[i], pool[len(matingpool)-i-1])
         children.append(child)
+        print(children)
     return children
 
 def mutate(individual, mutationRate):
@@ -182,6 +186,11 @@ def geneticAlgorithm(population, popSize, eliteSize, mutationRate, generations):
 
 df_cities = pd.read_csv('data/cities.csv')
 
+cityList = []
+
+for i in range(0,25):
+    cityList.append(City(x=int(random.random() * 200), y=int(random.random() * 200)))
+
 cityList2 = []
 
 for i in range(0,df_cities.shape[0]):
@@ -203,4 +212,4 @@ def geneticAlgorithmPlot(population, popSize, eliteSize, mutationRate, generatio
     '''
     print (progress)
 
-geneticAlgorithmPlot(population=cityList2, popSize=100, eliteSize=10, mutationRate=0.01, generations=5)
+geneticAlgorithm(population=cityList2, popSize=20, eliteSize=10, mutationRate=0.01, generations=5)
